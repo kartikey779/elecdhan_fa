@@ -1,0 +1,123 @@
+<!-- import WebFont from "webfontloader";
+import { useEffect } from "react";
+
+export default function Cards(){
+    useEffect(() => {
+        WebFont.load({
+          google: {
+            families: ["Droid Sans", "Chilanka", "Space Grotesk"],
+          },
+        });
+      }, []);
+    
+      const profileImage = {
+        img: "/profile.avif",
+      };
+    return(
+        <div>
+            <section class="ftco-menu">
+        <div class="container-fluid">
+          <div class="row d-md-flex">
+            <div
+              class="col-lg-4 ftco-animate img f-menu-img mb-5 mb-md-0"
+              style={{ backgroundImage: "url(images/about.jpg)" }}
+            ></div>
+            <div class="col-lg-8 ftco-animate p-md-5">
+              <div class="row">
+                <div class="col-md-12 nav-link-wrap mb-5">
+                  <div
+                    class="nav ftco-animate nav-pills"
+                    id="v-pills-tab"
+                    role="tablist"
+                    aria-orientation="vertical"
+                  >
+                    <a
+                      class="nav-link active"
+                      id="v-pills-1-tab"
+                      data-toggle="pill"
+                      href="#v-pills-1"
+                      role="tab"
+                      aria-controls="v-pills-1"
+                      aria-selected="true"
+                    >
+                      HarraiPatti
+                    </a>
+
+                    <a
+                      class="nav-link"
+                      id="v-pills-2-tab"
+                      data-toggle="pill"
+                      href="#v-pills-2"
+                      role="tab"
+                      aria-controls="v-pills-2"
+                      aria-selected="false"
+                    >
+                      Labeda
+                    </a>
+
+                    <a
+                      class="nav-link"
+                      id="v-pills-3-tab"
+                      data-toggle="pill"
+                      href="#v-pills-3"
+                      role="tab"
+                      aria-controls="v-pills-3"
+                      aria-selected="false"
+                    >
+                      Banpurava
+                    </a>
+
+                    <a
+                      class="nav-link"
+                      id="v-pills-4-tab"
+                      data-toggle="pill"
+                      href="#v-pills-4"
+                      role="tab"
+                      aria-controls="v-pills-4"
+                      aria-selected="false"
+                    >
+                      Other
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-12 d-flex align-items-center">
+                  <div class="tab-content ftco-animate" id="v-pills-tabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="v-pills-1"
+                      role="tabpanel"
+                      aria-labelledby="v-pills-1-tab"
+                    >
+                      <div class="row">
+                        <div class="col-md-4 text-center border rounded pt-2">
+                          <div class="menu-wrap">
+                            <img
+                              src={profileImage.img}
+                              class="menu-img img mb-4 rounded"
+                              alt=""
+                              width={550}
+                              height="auto"
+                              style={{ maxWidth: "100%" }}
+                            />
+                            <div class="text">
+                              <h3 style={{ fontFamily: "Space Grotesk", fontSize:"1.7em" , fontWeight:"600"}}>Name: Kamal</h3>
+                              <p style={{ fontFamily: "Chilanka" }}><b> Phone Number: </b> 123456789</p>
+                              <p class="price">
+                                <span style={{ fontFamily: "Chilanka" }}><b> Gender:</b> Male</span>
+                              </p>
+                              <p style={{ fontFamily: "Chilanka" }}><b>Age:</b> 21</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+        </div>
+    );
+} -->

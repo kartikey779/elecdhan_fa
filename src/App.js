@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import {createBrowserRouter,RouterProvider } from 'react-router-dom';
+import { useState } from 'react';
+import RootLayout from './RootLayout/RootLayout';
+import Login from './LoginPage/LoginPage';
+import Voter from './Voter/voter';
+import Main from './HomePage/main';
+import HomePage from './HomePage/HomePage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const onLogin = () => {
+    console.log('User logged in'); // Add this line
+    setIsAuthenticated(true);
+  };
+  
+
+  // const onLogout = () => {
+  //   setIsAuthenticated(false);
+  // };
+
+
+  
+
+
+  
+
+  const routes = [
+    {
+      path: '/',
+      element: <RootLayout/>,
+      children: [
+        { path: '/', element:  isAuthenticated ? <Main/> : <Login onLogin={onLogin}/> },
+        { path:'/login', element: <Login onLogin={onLogin} />},
+        { path:'/voter', element: <Voter/>},
+        { path:'/form', element: <HomePage/>}
+      ],
+    },
+  ];
+
+  const router = createBrowserRouter(routes);
+
+  return <RouterProvider router={router}  />;
+};
 
 export default App;
+
+
