@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
-
+const path = require('path');
 
 // Set up storage for multer
 const storage = multer.diskStorage({
   destination: function(req,file,cb){
-  cb(null,'../src/images/');
+    const uploadPath = path.join(__dirname, '../../src/images/');
+  cb(null,uploadPath);
 },
 filename: function(req,file,cb){
   const uniqueSuffix = Date.now();
@@ -84,6 +85,10 @@ router.post("/", upload.single("image"), async (req, res) => {
     console.log("Received form submission:", req.body);  // Check if form data is received
     console.log("Received file:", req.file); 
     const { name, phoneNumber, age, gender, address } = req.body;
+
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+    }
 
     const newVoter = new Voter({
       name,

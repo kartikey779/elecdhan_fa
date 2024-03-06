@@ -22,7 +22,7 @@ function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/form");
+        const response = await fetch("https://elecdhan-api.vercel.app/form");
         const jsonData = await response.json();
         setCardData(jsonData);
         setDefaultData(jsonData);

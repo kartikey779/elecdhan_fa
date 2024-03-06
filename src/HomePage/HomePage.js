@@ -23,7 +23,7 @@ export default function HomePage() {
 
   
     try {
-      let result = await fetch("http://localhost:5000/form", {
+      let result = await fetch("http://localhost:50954/form", {
         method: "post",
         body: formData,
       });
