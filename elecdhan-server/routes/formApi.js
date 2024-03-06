@@ -3,21 +3,28 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
 
 // Set up storage for multer
 const storage = multer.diskStorage({
-  destination: function(req,file,cb){
+  destination: function(req, file, cb) {
     const uploadPath = path.join(__dirname, '../../src/images/');
-  cb(null,uploadPath);
-},
-filename: function(req,file,cb){
-  const uniqueSuffix = Date.now();
-  cb(null, uniqueSuffix + "_" + file.originalname);
-},
+    cb(null, uploadPath);
+  },
+  filename: function(req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + "_" + file.originalname);
+  },
 });
-const upload = multer({
-    storage: storage
-  });
+const upload = multer({ storage: storage });
+
+// Add your Cloudinary credentials here
+          
+cloudinary.config({ 
+  cloud_name: 'dkz9hgabc', 
+  api_key: '248158938386447', 
+  api_secret: '2zUvGw3X6edfttNck5xylQqUc2k' 
+});
 
 const Schema = mongoose.Schema;
 
@@ -41,7 +48,6 @@ const voterSchema = new Schema({
   address: {
     type: String,
     required: true,
-   
   },
   image: {
     type: String,
@@ -75,20 +81,17 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
-
-
-
-
 router.post("/", upload.single("image"), async (req, res) => {
   try {
-    console.log("Received form submission:", req.body);  // Check if form data is received
-    console.log("Received file:", req.file); 
-    const { name, phoneNumber, age, gender, address } = req.body;
-
+    // Check if an image was uploaded
     if (!req.file) {
       return res.status(400).send('No file uploaded.');
     }
+
+    // Upload the image to Cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
+
+    const { name, phoneNumber, age, gender, address } = req.body;
 
     const newVoter = new Voter({
       name,
@@ -96,15 +99,15 @@ router.post("/", upload.single("image"), async (req, res) => {
       age,
       gender,
       address,
-      image: req.file.filename,
+      image: result.secure_url,  // Save the Cloudinary URL
     });
 
     await newVoter.save();
     res.sendStatus(200);
     console.log("Voter data saved successfully");
-  } catch (err) {
-    console.error("Error saving voter data: ", err);
-    res.status(500).send(err.message);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

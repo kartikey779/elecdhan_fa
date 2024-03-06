@@ -23,10 +23,11 @@ export default function HomePage() {
 
   
     try {
-      let result = await fetch("http://localhost:50954/form", {
+      let result = await fetch("http://localhost:56480/form", {
         method: "post",
         body: formData,
       });
+      console.log(result)
   
       console.log("fetch Result " + result);
   

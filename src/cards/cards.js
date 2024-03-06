@@ -22,7 +22,7 @@ function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://elecdhan-api.vercel.app/form");
+        const response = await fetch("http://localhost:56480/form");
         const jsonData = await response.json();
         setCardData(jsonData);
         setDefaultData(jsonData);
@@ -118,7 +118,7 @@ function Cards() {
                 <Card className="m-1">
                   <Card.Img
                     variant="top"
-                    src={require(`../images/${item.image}`)}
+                    src={item.image}
                     alt={item.name}
                     className="w-100 rounded p-1 "
                   />
