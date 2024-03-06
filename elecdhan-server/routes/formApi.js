@@ -102,9 +102,9 @@ router.post("/", upload.single("image"), async (req, res) => {
     await newVoter.save();
     res.sendStatus(200);
     console.log("Voter data saved successfully");
-  } catch (err) {
-    console.error("Error saving voter data: ", err);
-    res.status(500).send(err.message);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
