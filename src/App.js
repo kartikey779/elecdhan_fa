@@ -32,9 +32,9 @@ const App = () => {
       path: '/',
       element: <RootLayout/>,
       children: [
-        { path: '/', element:  isAuthenticated ? <Main/> : <Login onLogin={onLogin}/> },
+        { path: '/', element:  isAuthenticated ? <Voter/> : <Login onLogin={onLogin}/> },
         { path:'/login', element: <Login onLogin={onLogin} />},
-        { path:'/voter', element: <Voter/>},
+        { path:'/voter', element: <Main/>},
       ],
     },
   ];
