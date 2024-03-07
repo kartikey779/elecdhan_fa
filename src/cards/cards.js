@@ -72,7 +72,7 @@ function Cards() {
       <a href="https://from-mocha.vercel.app/" target="blank" class="btn btn-primary btn-sm m-2">
         Form
       </a>
-      <a href="/voter" class="btn btn-danger btn-sm">
+      <a href="/" class="btn btn-danger btn-sm">
         Voter
       </a>
 
