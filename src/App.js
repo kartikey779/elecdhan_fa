@@ -5,7 +5,6 @@ import RootLayout from './RootLayout/RootLayout';
 import Login from './LoginPage/LoginPage';
 import Voter from './Voter/voter';
 import Main from './HomePage/main';
-import HomePage from './HomePage/HomePage';
 
 
 
@@ -36,7 +35,6 @@ const App = () => {
         { path: '/', element:  isAuthenticated ? <Main/> : <Login onLogin={onLogin}/> },
         { path:'/login', element: <Login onLogin={onLogin} />},
         { path:'/voter', element: <Voter/>},
-        { path:'/form', element: <HomePage/>}
       ],
     },
   ];

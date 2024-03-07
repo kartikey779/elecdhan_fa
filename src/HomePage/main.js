@@ -25,7 +25,7 @@ function Main() {
 
           <Dropdown.Menu>
             <Dropdown.Item href="/voter" style={{ fontSize: "32px"}}>Voter</Dropdown.Item>
-            <Dropdown.Item href="/form" style={{ fontSize: "32px"}}>Form</Dropdown.Item>
+            <Dropdown.Item href="https://from-mocha.vercel.app/" target='blank' style={{ fontSize: "32px"}}>Form</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
