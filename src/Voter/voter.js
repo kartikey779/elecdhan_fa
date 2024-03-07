@@ -56,11 +56,13 @@ export default function Voter() {
                   style={{ maxWidth: "100%" }}
                   />
                   
+                  
               </div>
             </div>
           </div>
         </div>
       </section>
+    
 
       <Cards/>
 

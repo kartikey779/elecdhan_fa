@@ -11,7 +11,6 @@ function Cards() {
   const [selectedAge, setSelectedAge] = useState("Select Age");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
-  
 
   // ... existing code ...
 
@@ -35,7 +34,6 @@ function Cards() {
 
     fetchData();
   }, []);
-  
 
   // const profileImage = {
   //   img: "/profile.avif",
@@ -68,16 +66,20 @@ function Cards() {
     // Update state with the filtered data
     setCardData(filteredData);
   };
-  
 
   return (
     <div className="container">
-    
+      <a href="https://from-mocha.vercel.app/" target="blank" class="btn btn-primary btn-sm m-2">
+        Form
+      </a>
+      <a href="/voter" class="btn btn-danger btn-sm">
+        Voter
+      </a>
 
       <select
         className="form-select m-1 p-2"
         onChange={(e) => setSelectedGender(e.target.value)}
-        >
+      >
         <option>Select Gender</option>
         <option>Male</option>
         <option>Female</option>
@@ -95,7 +97,7 @@ function Cards() {
       <select
         className="form-select m-1 p-2"
         onChange={(e) => setSelectedAge(e.target.value)}
-        >
+      >
         <option>Select Age</option>
         <option>18+</option>
         <option>28+</option>
@@ -105,50 +107,55 @@ function Cards() {
       <button className="btn btn-primary m-1" onClick={filterData}>
         Apply Filters
       </button>
-        
 
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div className="row">
-          {Array.isArray(cardData)?(cardData
-            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .map((item) => (
-              <div className="col-md-2" key={item.id}>
-                <Card className="m-1">
-                  <Card.Img
-                    variant="top"
-                    src={item.image}
-                    alt={item.name}
-                    className="w-100 rounded p-1 "
-                  />
-                  <Card.Body className="m-1">
-                    <Card.Title
-                      style={{
-                        fontFamily: "Chilanka",
-                        fontSize: "1.4em",
-                      }}
-                    >
-                      <b>Name:</b> {item.name}{console.log(item)}
-                    </Card.Title>
-                    <Card.Text style={{ fontFamily: "Chilanka" }}>
-                      <b>Phone Number:</b> {item.phoneNumber}
-                    </Card.Text>
-                    <Card.Text style={{ fontFamily: "Chilanka" }}>
-                      <b>Gender:</b> {item.gender}
-                    </Card.Text>
-                    <Card.Text style={{ fontFamily: "Chilanka" }}>
-                      <b>Age:</b> {item.age}
-                    </Card.Text>
-                    <Card.Text style={{ fontFamily: "Chilanka" }}>
-                      <b>Address:</b> {item.address}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </div>
-            ))):(<p>
-              no data is available
-            </p>)}
+          {Array.isArray(cardData) ? (
+            cardData
+              .slice(
+                (currentPage - 1) * itemsPerPage,
+                currentPage * itemsPerPage
+              )
+              .map((item) => (
+                <div className="col-md-2" key={item.id}>
+                  <Card className="m-1">
+                    <Card.Img
+                      variant="top"
+                      src={item.image}
+                      alt={item.name}
+                      className="w-100 rounded p-1 "
+                    />
+                    <Card.Body className="m-1">
+                      <Card.Title
+                        style={{
+                          fontFamily: "Chilanka",
+                          fontSize: "1.4em",
+                        }}
+                      >
+                        <b>Name:</b> {item.name}
+                        {console.log(item)}
+                      </Card.Title>
+                      <Card.Text style={{ fontFamily: "Chilanka" }}>
+                        <b>Phone Number:</b> {item.phoneNumber}
+                      </Card.Text>
+                      <Card.Text style={{ fontFamily: "Chilanka" }}>
+                        <b>Gender:</b> {item.gender}
+                      </Card.Text>
+                      <Card.Text style={{ fontFamily: "Chilanka" }}>
+                        <b>Age:</b> {item.age}
+                      </Card.Text>
+                      <Card.Text style={{ fontFamily: "Chilanka" }}>
+                        <b>Address:</b> {item.address}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+              ))
+          ) : (
+            <p>no data is available</p>
+          )}
         </div>
       )}
       <CustomPagination
