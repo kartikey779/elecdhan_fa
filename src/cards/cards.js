@@ -9,13 +9,45 @@ function Cards() {
   const [selectedGender, setSelectedGender] = useState("Select Gender");
   const [selectedAddress, setSelectedAddress] = useState("Select Address");
   const [selectedAge, setSelectedAge] = useState("Select Age");
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
-  // ... existing code ...
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filterData = () => {
+    let filteredData = defaultData;
+
+    // Filter based on gender
+    if (selectedGender !== "Select Gender") {
+      filteredData = filteredData.filter((item) => item.gender === selectedGender);
+    }
+
+    // Filter based on address
+    if (selectedAddress !== "Select Address") {
+      filteredData = filteredData.filter((item) => item.address === selectedAddress);
+    }
+
+    // Filter based on age
+    if (selectedAge !== "Select Age") {
+      filteredData = filteredData.filter((item) => item.age >= parseInt(selectedAge, 10));
+    }
+
+    // Filter based on search term (name in this example)
+    if (searchTerm.trim() !== "") {
+      filteredData = filteredData.filter(
+        (item) => item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Update state with the filtered data
+    setCardData(filteredData);
   };
 
   useEffect(() => {
@@ -35,44 +67,12 @@ function Cards() {
     fetchData();
   }, []);
 
-  // const profileImage = {
-  //   img: "/profile.avif",
-  // };
-
-  const filterData = () => {
-    let filteredData = defaultData;
-
-    // Filter based on gender
-    if (selectedGender !== "Select Gender") {
-      filteredData = filteredData.filter(
-        (item) => item.gender === selectedGender
-      );
-    }
-
-    // Filter based on gender
-    if (selectedAddress !== "Select Address") {
-      filteredData = filteredData.filter(
-        (item) => item.address === selectedAddress
-      );
-    }
-
-    // Filter based on age
-    if (selectedAge !== "Select Age") {
-      filteredData = filteredData.filter(
-        (item) => item.age >= parseInt(selectedAge, 10)
-      );
-    }
-
-    // Update state with the filtered data
-    setCardData(filteredData);
-  };
-
   return (
     <div className="container">
-      <a href="https://from-mocha.vercel.app/" target="blank" class="btn btn-primary btn-sm m-2">
+      <a href="https://from-mocha.vercel.app/" target="blank" className="btn btn-primary btn-sm m-2">
         Form
       </a>
-      <a href="/" class="btn btn-danger btn-sm">
+      <a href="/" className="btn btn-danger btn-sm">
         Voter
       </a>
 
@@ -104,6 +104,15 @@ function Cards() {
         <option>38+</option>
         <option>48+</option>
       </select>
+
+      <input
+        type="text"
+        placeholder="Search by Name"
+        className="form-control m-1 p-2"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+
       <button className="btn btn-primary m-1" onClick={filterData}>
         Apply Filters
       </button>
@@ -135,7 +144,6 @@ function Cards() {
                         }}
                       >
                         <b>Name:</b> {item.name}
-                        {console.log(item)}
                       </Card.Title>
                       <Card.Text style={{ fontFamily: "Chilanka" }}>
                         <b>Phone Number:</b> {item.phoneNumber}
@@ -158,6 +166,7 @@ function Cards() {
           )}
         </div>
       )}
+
       <CustomPagination
         totalPages={Math.ceil(cardData.length / itemsPerPage)}
         currentPage={currentPage}
